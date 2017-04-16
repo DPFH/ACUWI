@@ -1,5 +1,6 @@
 # ACUWI
 Ideas about creating updated Windows ISOs
+Warning: It doesn't look like newlines are handled correctly here. Download this file in raw.
 
 This is what you should do (in pseudocode) to create an updated windows ISO from an official one:
 
