@@ -45,10 +45,11 @@ I'm thinking about creating a collection of scripts that will automatically do t
 You can't use 64-bit Windows pE to install 32-bit Windows,
 but
 You can use 32-bit Windows PE to install 64-bit Windows. So we create an ISo with 32-bit windows pe and AIO install.wim.  BUT it looks like it's difficult to have an image that can boot both 64 bit and 32 bit uefi. \bootmgr.efi and \efi\microsoft\boot\efisys.bin are platform-dependent. Use these commands to create an AIO efisys.bin (needs imdisk (that is not a microsoft tool but is open source so it is acceptable) ) :
-%systemroot%\system32\imdisk.exe -a -t file -f "%pe_32_64%\fwfiles\efisys.ima" -s 2880K -p "/fs:FAT /q /y" -m B:
+%systemroot%\system32\imdisk.exe -a -t file -f "%pe_32_64%\fwfiles\efisys.ima" -s 2880K -p "/fs:FAT /q /y /v:EFISECTOR" -m B:
 md B:\efi\boot\
 copy "%pe_32_64%\fwfiles\bootx64.efi" B:\efi\boot\
 copy "%WinPERoot%\x86\Media\EFI\Boot\bootia32.efi" %pe_32_64%\media\EFI\Boot\
 %systemroot%\system32\imdisk.exe -d -m B:
 
 Thanks to reboot.pro :))
+This will create a 2.88 mb floppy image instead of the normal 1.44 one. This might not work in some garbage UEFIs. Testing is welcome :)
